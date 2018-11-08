@@ -1,7 +1,5 @@
 import React from "react";
 import {connect} from "react-redux";
-import {getAll, add, update, remove} from "../actions/action";
-import {MEMBER_EVENTS} from "../constants/Events";
 import es6BindAll from "es6bindall";
 
 class MemberList extends React.Component{
@@ -18,7 +16,6 @@ class MemberList extends React.Component{
   }
 
   componentDidMount() {
-    this.props.dispatch(getAll(MEMBER_EVENTS.GET_ALL, '/sample/member'));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -42,7 +39,6 @@ class MemberList extends React.Component{
   }
 
   handleSubmit() {
-    this.props.dispatch(add(MEMBER_EVENTS.ADD, '/sample/member', this.state.entity));
   }
 
   toggleEdit(show, member = this.state.newEntity) {
@@ -50,12 +46,9 @@ class MemberList extends React.Component{
   }
 
   handleUpdate() {
-    this.props.dispatch(update(MEMBER_EVENTS.UPDATE, '/sample/member', this.state.newEntity));
-    this.toggleEdit(false);
   }
 
   handleRemove(member) {
-    this.props.dispatch(remove(MEMBER_EVENTS.REMOVE, '/sample/member', member));
   }
 
   render() {
@@ -101,8 +94,6 @@ class MemberList extends React.Component{
 
 const mapStatusToProps = (status) => {
   return {
-    members: status.member.list,
-    message: status.member.message
   }
 };
 
